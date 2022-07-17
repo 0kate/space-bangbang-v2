@@ -1,28 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import TitleScene from './components/scenes/TitleScene/TitleScene';
 
-function App() {
-  const canvasRef = useRef(null);
-  const [context, setContext] = useState(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    setContext(ctx);
-  }, []);
-
-  useEffect(() => {
-    if (context === null) {
-      return;
-    }
-    context.fillStyle = 'green';
-    context.fillRect(10, 10, 150, 100);
-  }, [context]);
+export default function App() {
+  const [currentScene, setCurrentScene] = useState('title');
 
   return (
-    <div className="App">
-      <canvas ref={canvasRef}></canvas>
+    <div>
+      {currentScene === 'title' ? <TitleScene /> : null}
     </div>
   );
 }
-
-export default App;
